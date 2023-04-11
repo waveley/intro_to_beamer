@@ -1,0 +1,279 @@
+---
+title: |
+  | Tomatoes and Eggs: A Delicious and
+  | Affordable Dish
+author: |
+  | Computing Club
+  | Department of Biostatistics, Columbia University
+date: |
+  `r format(Sys.time(), '%B %d, %Y')`
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+set.seed(20220417)
+library(tidyverse)
+
+# set knitr defaults
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 9,
+  fig.asp   = .5,
+  out.width = "100%",
+  fig.align = "center",
+  cache = TRUE
+)
+
+# set theme defaults
+theme_set(
+  theme_bw() +
+    theme(
+      legend.position = "bottom",
+      plot.title    = element_text(hjust = 0.5),
+      plot.subtitle = element_text(hjust = 0.5),
+      plot.caption  = element_text(hjust = 0.0)
+    )
+)
+
+# set color scale defaults
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill   = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete   = scale_fill_viridis_d
+```
+
+## Tomatoes and Eggs
+
+> * Tomato and eggs is a Chinese dish whose origins allegedly date back only to 1940 (Choi 2018).
+
+> * It is comprised of two primary ingredients (tomatoes and eggs), with other items being added in to enhance flavor.
+
+> * Many consider this one of the most ubiquitous dishes across all Chinese households. 
+
+> * Not only is it filling and nutritious, it is also quite affordable! Let's investigate.
+
+# Price of Tomatoes and Eggs: A Study
+
+## Price of Tomatoes and Eggs: Time Series Plot
+
+```{r}
+eggs <- 
+  readxl::read_excel("data/egg_prices_jan2013_feb2023.xlsx", range = "A10:M21") %>%
+  janitor::clean_names() %>%
+  pivot_longer(
+    cols = jan:dec,
+    names_to = "mon"
+  ) %>%
+  mutate(
+    mon = str_to_title(mon),
+    year = as.numeric(year),
+  ) %>%
+  rename(egg_price = value)
+
+tom_and_egg <- 
+  readxl::read_excel("data/tomato_prices_jan2021_feb2023.xlsx", range = "A11:D36") %>%
+  janitor::clean_names() %>%
+  separate(
+    label,
+    c("year", "mon")
+  ) %>%
+  rename(tomato_price = observation_value) %>%
+  mutate(
+    year = as.numeric(year)
+  ) %>%
+  left_join(
+    eggs, 
+    by = c("year", "mon")
+  ) %>% 
+  mutate(
+    date = as.Date(paste0(mon, " 01, ", year), "%B %d, %Y")
+  ) %>%
+  select(
+    date, egg_price, tomato_price
+  ) %>%
+  pivot_longer(
+    cols = c(egg_price, tomato_price)
+  )
+
+tom_and_egg %>%
+  ggplot(
+    aes(x = date, y = value, col = name)
+  ) +
+  geom_line() +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "Price of Tomatoes and Eggs",
+    subtitle = "2021-2023",
+    caption = "Data from Bureau of Labor Statistics",
+    col = "Item"
+  ) +
+  scale_color_manual(values = c("yellow2", "tomato"),
+                     labels = c("Eggs", "Tomatoes")) +
+  scale_y_continuous(labels = scales::dollar_format(),
+                     breaks = seq(0, 5, by = 0.5))
+```
+
+## Price of Tomatoes and Eggs: Fitted Curves
+
+```{r}
+tom_and_egg %>%
+  ggplot(
+    aes(x = date, y = value, col = name)
+  ) +
+  geom_line() +
+  geom_smooth(se = FALSE) +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "Price of Tomatoes and Eggs",
+    subtitle = "2021-2023",
+    caption = "Data from Bureau of Labor Statistics",
+    col = "Item"
+  ) +
+  scale_color_manual(values = c("yellow2", "tomato"),
+                     labels = c("Eggs", "Tomatoes")) +
+  scale_y_continuous(labels = scales::dollar_format(), 
+                     breaks = seq(0, 5, by = 0.5))
+```
+
+
+## Tomato Price Model Construction
+
+$$
+\begin{aligned}
+\frac{y}{2} &= \beta_0 + \beta_1 x + \varepsilon
+\\
+\varepsilon &\sim N(0,\sigma^2),
+\end{aligned}
+$$
+
+where $y$ is the price for a pound of tomatoes (as an average across cities in the US) and $x$ is time (in days from January 1, 1970). 
+
+```{r tomato, echo=TRUE}
+tom_reg <- lm(value/2 ~ date, 
+              data = tom_and_egg %>% 
+                     filter(name == "tomato_price"))
+```
+
+```{r, echo=FALSE}
+summary(tom_reg) %>%
+  broom::tidy() %>%
+  knitr::kable(col.names = c("Term", "Estimate", "Std. Error", "Statistic", "p-value"))
+```
+
+## Egg Price Model Construction
+
+$$
+\begin{aligned}
+\log\Big(\frac{y}{3}\Big) &= \beta_0 + \beta_1 x + \varepsilon
+\\
+\varepsilon &\sim N(0,\sigma^2),
+\end{aligned}
+$$
+
+where $y$ is the price for a dozen eggs (as an average across cities in the US)  and $x$ is time (in days from January 1, 1970). 
+
+```{r egg_mod, echo=TRUE}
+egg_reg <- lm(log(value/3) ~ date, 
+              data = tom_and_egg %>% 
+                     filter(name == "egg_price"))
+```
+
+```{r, echo=FALSE}
+summary(egg_reg) %>%
+  broom::tidy() %>%
+  knitr::kable(col.names = c("Term", "Estimate", "Std. Error", "Statistic", "p-value"))
+```
+
+## Predicted Price of Ingredients on May 16, 2023
+
+- Predicted price of a half pound of tomatoes on May 16, 2023:
+
+$$
+\begin{aligned}
+\frac{\hat{y}}{2} &= \hat{\beta_0} + \hat{\beta_1}x
+\\
+&\approx -2.3379 + 0.0001565(\text{as.Date('May 16, 2023')})
+\\
+&\approx 0.7127
+\end{aligned}
+$$
+
+- Predicted price of four eggs on May 16, 2023:
+
+$$
+\begin{aligned}
+\log\Big(\frac{\hat{y}}{3}\Big) &= \hat{\beta_0} + \hat{\beta_1} x
+\\
+&\approx -11.2648 + 0.0006139(\text{as.Date('May 16, 2023')})
+\\
+&\approx 0.7019
+\\
+e^{0.7019} &\approx 2.017
+\end{aligned}
+$$
+
+- Total price per meal: $\$2.017 + \$0.7127 \approx \$2.73$. Affordable!
+
+\vspace{10mm}
+
+# Time for the Recipe!
+
+## Ingredients
+
+- 4 eggs
+
+- 3 large, or about half a pound, of tomatoes cut into small wedges
+
+- 1 scallions, finely chopped
+
+- 3 tbsp oil
+
+- 1 tsp minced garlic
+
+- 1.5 tbsp sugar
+
+- salt, to taste
+
+- $\frac{1}{2}$ cup water, just in case
+
+## Directions
+
+
+1. Heat one tablespoon of oil in a pan, probably over medium-high heat. 
+
+2. Beat all four eggs in a bowl, with some salt -- a little less than you would use if you were to be making ordinary scrambled eggs.
+
+3. When pan is up to temperature, pour eggs in and let cook slightly. 
+
+4. Slowly draw egg mixture from sides of pan to center to create long curds.
+
+5. Take eggs out of pan and transfer to a bowl just before they are set. This is important, as the eggs will get cooked again with the tomatoes and may get "tough" if they get cooked all the way in this initial scrambling step. 
+
+## Directions
+
+
+6. Wipe out pan, if you still will be using it for the remainder of the dish.
+
+7. We will now make scallion/garlic oil. Heat remaining 2 tablespoons of oil in pan. Add chopped scallions and garlic and fry until fragrant. 
+
+8. Add tomatoes to pan and saute for a few minutes. Then, add sugar and salt to taste. Cook until mushy. If the tomatoes refuse to get mushy, add some water to help them cook down.
+
+9. Add eggs back into pan with tomatoes. Taste and season again, if needed.
+
+10. Enjoy!
+
+# Thank you!
+
+## References
+
+1. Choi, A. (2018, July 3). History of the tomato in Italy and China: Tracing the role of tomatoes in Italian and Chinese cooking. Noodles on the Silk Road. Retrieved April 10, 2023, from https://scholarblogs.emory.edu/noodles/2018/07/03/history-of-the-tomato-in-italy-and-china-tracing-the-role-of-tomatoes-in-italian-and-chinese-cooking/ 
+
+2. U.S. Bureau of Labor Statistics. (n.d.). BLS Data viewer. U.S. Bureau of Labor Statistics. Retrieved April 10, 2023, from https://beta.bls.gov/dataViewer/view/timeseries/APU0000712311 
+
+3. U.S. Bureau of Labor Statistics. (n.d.). Charts related to the latest "consumer price index" news release &nbsp; | &nbsp; more chart packages. U.S. Bureau of Labor Statistics. Retrieved April 10, 2023, from https://www.bls.gov/charts/consumer-price-index/consumer-price-index-average-price-data.htm 

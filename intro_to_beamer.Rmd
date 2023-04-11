@@ -47,6 +47,12 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete   = scale_fill_viridis_d
 ```
 
+## Let us know you're here!
+
+```{r qr_code, echo=FALSE, fig.cap="Sign in!", out.width = "50%", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("frame.png"))
+```
+
 ## Introduction 
 
 - Beamer is the \LaTeX package that is used to create presentation slides. 
