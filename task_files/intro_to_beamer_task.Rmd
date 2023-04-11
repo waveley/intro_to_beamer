@@ -52,13 +52,13 @@ scale_fill_discrete   = scale_fill_viridis_d
 
 Create a presentation that includes the following components:
 
-1. Brief description of dish -- [\color{blue}this link](https://scholarblogs.emory.edu/noodles/2018/07/03/history-of-the-tomato-in-italy-and-china-tracing-the-role-of-tomatoes-in-italian-and-chinese-cooking/) may help
+> 1. Brief description of dish -- [\color{blue}this link](https://scholarblogs.emory.edu/noodles/2018/07/03/history-of-the-tomato-in-italy-and-china-tracing-the-role-of-tomatoes-in-italian-and-chinese-cooking/) may help
 
-2. Plots showing trends of prices of tomatoes and eggs over time -- datasets can be found [\color{blue}here](https://beta.bls.gov/dataViewer/view/timeseries/APU0000712311 ) and [\color{blue}here](https://www.bls.gov/charts/consumer-price-index/consumer-price-index-average-price-data.htm).
+> 2. Plots showing trends of prices of tomatoes and eggs over time -- datasets can be found [\color{blue}here](https://beta.bls.gov/dataViewer/view/timeseries/APU0000712311 ) and [\color{blue}here](https://www.bls.gov/charts/consumer-price-index/consumer-price-index-average-price-data.htm).
 
-3. Predictive model for price of tomatoes and eggs for May 16, 2023 (this is certainly a worthy dish for your graduation dinner!)
+> 3. Predictive model for price of tomatoes and eggs for May 16, 2023 (this is certainly a worthy dish for your graduation dinner!)
 
-4. Ingredient list and recipe
+> 4. Ingredient list and recipe
 
 ## The Task
 
