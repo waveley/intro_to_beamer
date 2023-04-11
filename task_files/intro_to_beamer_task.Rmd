@@ -71,6 +71,6 @@ This may seem like a lot... but don't worry! Code that has already been establis
 
 ## GitHub
 
-Pull from this repo to follow along!
+Pull from this repo!
 
 [https://github.com/waveley/intro_to_beamer](https://github.com/waveley/intro_to_beamer)

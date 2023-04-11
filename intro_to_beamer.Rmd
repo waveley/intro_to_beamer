@@ -51,7 +51,7 @@ scale_fill_discrete   = scale_fill_viridis_d
 
 - Beamer is the \LaTeX package that is used to create presentation slides. 
 
-- As a \LaTeX package, it can be used in any \LaTeX typesetting and compiling processing system.
+- As a \LaTeX $\,$ package, it can be used in any \LaTeX $\,$ typesetting and compiling processing system.
 
 - Today, we will be discussing its use in RMarkdown.
 
@@ -59,9 +59,9 @@ scale_fill_discrete   = scale_fill_viridis_d
 
 ## Introduction 
 
-- Beamer is the \LaTeX package that is used to create presentation slides. 
+- Beamer is the \LaTeX $\,$ package that is used to create presentation slides. 
 
-- As a \LaTeX package, it can be used in any \LaTeX typesetting and compiling processing system.
+- As a \LaTeX $\,$ package, it can be used in any \LaTeX $\,$ typesetting and compiling processing system.
 
 - Today, we will be discussing its use in RMarkdown.
 
@@ -71,7 +71,7 @@ scale_fill_discrete   = scale_fill_viridis_d
 
 ## Why Beamer?
 
-"...\LaTeX encourages authors not to worry too much about the appearance of their documents but to concentrate on getting the right content." 
+"...\LaTeX $\,$ encourages authors not to worry too much about the appearance of their documents but to concentrate on getting the right content." 
 
 \hfill \LaTeX Project's [About Page](https://www.latex-project.org/about/)
 
@@ -100,5 +100,3 @@ knitr::include_graphics(c("images/section_content.png","images/section_content_o
 ```
 
 # Let's make a presentation :)
-
-## Resources
