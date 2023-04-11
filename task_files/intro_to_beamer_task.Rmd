@@ -67,10 +67,19 @@ This may seem like a lot...
 
 ## The Task
 
-This may seem like a lot... but don't worry! Code that has already been established for you.
+This may seem like a lot... but don't worry! Code has already been established for you.
 
 ## GitHub
 
 Pull from this repo!
 
 [https://github.com/waveley/intro_to_beamer](https://github.com/waveley/intro_to_beamer)
+
+## The Task
+
+- Similar to how your practicum files may be organized, the content for this presentation is spread out across several different files (in the `task_files` folder).
+
+- The construction of a Beamer presentation in RMarkdown allows you to bring various types and amounts of content into one file.
+
+- Feel free to have a go at creating your own slide deck with the provided materials!
+

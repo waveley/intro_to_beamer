@@ -49,7 +49,7 @@ tom_and_egg <-
     cols = c(egg_price, tomato_price)
   )
 
-############ GRAPH 1 ##############
+############ GRAPH 1: Time Series ##############
 
 tom_and_egg %>%
   ggplot(
@@ -69,8 +69,7 @@ tom_and_egg %>%
   scale_y_continuous(labels = scales::dollar_format(),
                      breaks = seq(0, 5, by = 0.5))
 
-
-############ GRAPH 2 ##############
+############ GRAPH 2: Smoothed Curves ##############
 
 tom_and_egg %>%
   ggplot(

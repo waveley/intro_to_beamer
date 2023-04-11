@@ -17,7 +17,7 @@ $$
 
 where $y$ is the price for a pound of tomatoes (as an average across cities in the US) and $x$ is time (in days from January 1, 1970). 
 
-```{r tomato, echo=TRUE}
+```{r, echo=TRUE}
 tom_reg <- lm(value/2 ~ date, 
               data = tom_and_egg %>% 
                      filter(name == "tomato_price"))
