@@ -101,12 +101,4 @@ knitr::include_graphics(c("images/section_content.png","images/section_content_o
 
 # Let's make a presentation :)
 
-## GitHub
-
-Pull from this repo to follow along!
-
-[https://github.com/waveley/intro_to_beamer](https://github.com/waveley/intro_to_beamer)
-
-## References
-
-https://www.latex-project.org/about/
+## Resources

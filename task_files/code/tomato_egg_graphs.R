@@ -49,6 +49,29 @@ tom_and_egg <-
     cols = c(egg_price, tomato_price)
   )
 
+############ GRAPH 1 ##############
+
+tom_and_egg %>%
+  ggplot(
+    aes(x = date, y = value, col = name)
+  ) +
+  geom_line() +
+  labs(
+    x = "Date",
+    y = "Price",
+    title = "Price of Tomatoes and Eggs",
+    subtitle = "2021-2023",
+    caption = "Data from Bureau of Labor Statistics",
+    col = "Item"
+  ) +
+  scale_color_manual(values = c("yellow2", "tomato"),
+                     labels = c("Eggs", "Tomatoes")) +
+  scale_y_continuous(labels = scales::dollar_format(),
+                     breaks = seq(0, 5, by = 0.5))
+
+
+############ GRAPH 2 ##############
+
 tom_and_egg %>%
   ggplot(
     aes(x = date, y = value, col = name)
@@ -67,5 +90,3 @@ tom_and_egg %>%
                      labels = c("Eggs", "Tomatoes")) +
   scale_y_continuous(labels = scales::dollar_format(), 
                      breaks = seq(0, 5, by = 0.5))
-
-                 

@@ -1,0 +1,76 @@
+---
+title: |
+  | Tomatoes and Eggs: A Delicious and
+  | Affordable Dish
+author: |
+  | Computing Club
+  | Department of Biostatistics, Columbia University
+date: |
+  `r format(Sys.time(), '%B %d, %Y')`
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+set.seed(20220417)
+library(tidyverse)
+
+# set knitr defaults
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 9,
+  fig.asp   = .5,
+  out.width = "100%",
+  fig.align = "center",
+  cache = TRUE
+)
+
+# set theme defaults
+theme_set(
+  theme_bw() +
+    theme(
+      legend.position = "bottom",
+      plot.title    = element_text(hjust = 0.5),
+      plot.subtitle = element_text(hjust = 0.5),
+      plot.caption  = element_text(hjust = 0.0)
+    )
+)
+
+# set color scale defaults
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill   = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete   = scale_fill_viridis_d
+```
+
+# The Task
+
+## The Task
+
+Create a presentation that includes the following components:
+
+1. Brief description of dish -- [\color{blue}this link](https://scholarblogs.emory.edu/noodles/2018/07/03/history-of-the-tomato-in-italy-and-china-tracing-the-role-of-tomatoes-in-italian-and-chinese-cooking/) may help
+
+2. Plots showing trends of prices of tomatoes and eggs over time -- datasets can be found [\color{blue}here](https://beta.bls.gov/dataViewer/view/timeseries/APU0000712311 ) and [\color{blue}here](https://www.bls.gov/charts/consumer-price-index/consumer-price-index-average-price-data.htm).
+
+3. Predictive model for price of tomatoes and eggs for May 16, 2023 (this is certainly a worthy dish for your graduation dinner!)
+
+4. Ingredient list and recipe
+
+## The Task
+
+This may seem like a lot... 
+\vspace{7mm}
+
+## The Task
+
+This may seem like a lot... but don't worry! Code that has already been established for you.
+
+## GitHub
+
+Pull from this repo to follow along!
+
+[https://github.com/waveley/intro_to_beamer](https://github.com/waveley/intro_to_beamer)

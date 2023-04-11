@@ -1,0 +1,55 @@
+---
+title: "Tomatoes and Eggs"
+author: "Waveley Qiu"
+date: "2023-04-06"
+output: pdf_document
+geometry: margin=0.79in
+---
+
+The ultimate comfort meal in Chinese households. 
+
+Serves 3, maybe 4, maybe 2. Maybe even 12. Depends on the size, number, and hunger levels of the prospective diners. 
+
+Best eaten with rice, or Chinese noodles. If rice, I recommend white rice. If noodles, I recommend Shangdong noodles, which come in a textbook-sized box that seems to never run out. I do not recommend the usage of carbohydrates that do not have at least Chinese-adjacent ethnic influences. I also do not recommend brown rice or quinoa. I am not sure I know what cous-cous is, but I think I will also recommend that you do not use that.
+
+## Ingredients
+
+- 4 eggs
+- 3 large, or about half a pound, of tomatoes cut into small wedges
+- 1 scallions, finely chopped
+- 3 tbsp oil
+- 1 tsp minced garlic
+- 1.5 tbsp sugar
+- salt, to taste
+- $\frac{1}{2}$ cup water, just in case
+
+## Directions
+
+1. Heat one tablespoon of oil in a pan, probably over medium-high heat. 
+
+2. Beat all four eggs in a bowl, with some salt -- a little less than you would use if you were to be making ordinary scrambled eggs.
+
+3. When pan is up to temperature, pour eggs in and let cook slightly. 
+
+4. Slowly draw egg mixture from sides of pan to center to create long curds.
+
+5. Take eggs out of pan and transfer to a bowl just before they are set. This is important, as the eggs will get cooked again with the tomatoes and may get "tough" if they get cooked all the way in this initial scrambling step. 
+
+6. Wipe out pan, if you still will be using it for the remainder of the dish.
+
+7. We will now make scallion/garlic oil. Heat remaining 2 tablespoons of oil in pan. Add chopped scallions and garlic and fry until fragrant. 
+
+8. Add tomatoes to pan and saute for a few minutes. Then, add sugar and salt to taste. Cook until mushy. If the tomatoes refuse to get mushy, add some water to help them cook down.
+
+9. Add eggs back into pan with tomatoes. Taste and season again, if needed.
+
+10. Enjoy!
+
+
+
+
+
+
+
+
+

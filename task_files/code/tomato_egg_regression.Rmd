@@ -1,0 +1,82 @@
+---
+title: "tomato_egg_regression"
+author: "Waveley Qiu"
+date: "2023-04-10"
+output: pdf_document
+---
+
+## Tomato Price Model Construction
+
+$$
+\begin{aligned}
+\frac{y}{2} &= \beta_0 + \beta_1 x + \varepsilon
+\\
+\varepsilon &\sim N(0,\sigma^2),
+\end{aligned}
+$$
+
+where $y$ is the price for a pound of tomatoes (as an average across cities in the US) and $x$ is time (in days from January 1, 1970). 
+
+```{r tomato, echo=TRUE}
+tom_reg <- lm(value/2 ~ date, 
+              data = tom_and_egg %>% 
+                     filter(name == "tomato_price"))
+```
+
+```{r, echo=FALSE}
+summary(tom_reg) %>%
+  broom::tidy() %>%
+  knitr::kable(col.names = c("Term", "Estimate", "Std. Error", "Statistic", "p-value"))
+```
+
+## Egg Price Model Construction
+
+$$
+\begin{aligned}
+\log\Big(\frac{y}{3}\Big) &= \beta_0 + \beta_1 x + \varepsilon
+\\
+\varepsilon &\sim N(0,\sigma^2),
+\end{aligned}
+$$
+
+where $y$ is the price for a dozen eggs (as an average across cities in the US)  and $x$ is time (in days from January 1, 1970). 
+
+```{r egg_mod, echo=TRUE}
+egg_reg <- lm(log(value/3) ~ date, 
+              data = tom_and_egg %>% 
+                     filter(name == "egg_price"))
+```
+
+```{r, echo=FALSE}
+summary(egg_reg) %>%
+  broom::tidy() %>%
+  knitr::kable(col.names = c("Term", "Estimate", "Std. Error", "Statistic", "p-value"))
+```
+
+## Predicted Price of Ingredients on May 16, 2023
+
+- Predicted price of a half pound of tomatoes on May 16, 2023:
+
+$$
+\begin{aligned}
+\frac{\hat{y}}{2} &= \hat{\beta_0} + \hat{\beta_1}x
+\\
+&\approx -2.3379 + 0.0001565(\text{as.Date('May 16, 2023')})
+\\
+&\approx 0.7127
+\end{aligned}
+$$
+
+- Predicted price of four eggs on May 16, 2023:
+
+$$
+\begin{aligned}
+\log\Big(\frac{\hat{y}}{3}\Big) &= \hat{\beta_0} + \hat{\beta_1} x
+\\
+&\approx -11.2648 + 0.0006139(\text{as.Date('May 16, 2023')})
+\\
+&\approx 0.7019
+\\
+e^{0.7019} &\approx 2.017
+\end{aligned}
+$$
