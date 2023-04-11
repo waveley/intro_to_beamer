@@ -1,0 +1,112 @@
+---
+title: |
+  | Introduction to Beamer in RMarkdown
+author: |
+  | Waveley Qiu
+  | MS Biostatistics (Theory and Methods)
+date: |
+  | Computing Club
+  |
+  `r format(Sys.time(), '%B %d, %Y')`
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+set.seed(20220417)
+library(tidyverse)
+
+# set knitr defaults
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 9,
+  fig.asp   = .5,
+  out.width = "100%",
+  fig.align = "center",
+  cache = TRUE
+)
+
+# set theme defaults
+theme_set(
+  theme_bw() +
+    theme(
+      legend.position = "bottom",
+      plot.title    = element_text(hjust = 0.5),
+      plot.subtitle = element_text(hjust = 0.5),
+      plot.caption  = element_text(hjust = 0.0)
+    )
+)
+
+# set color scale defaults
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill   = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete   = scale_fill_viridis_d
+```
+
+## Introduction 
+
+- Beamer is the \LaTeX package that is used to create presentation slides. 
+
+- As a \LaTeX package, it can be used in any \LaTeX typesetting and compiling processing system.
+
+- Today, we will be discussing its use in RMarkdown.
+
+\vspace{7mm}
+
+## Introduction 
+
+- Beamer is the \LaTeX package that is used to create presentation slides. 
+
+- As a \LaTeX package, it can be used in any \LaTeX typesetting and compiling processing system.
+
+- Today, we will be discussing its use in RMarkdown.
+
+*Note: I am not a Beamer expert, just an amateur enthusiast.*
+
+# Why Beamer?
+
+## Why Beamer?
+
+"...\LaTeX encourages authors not to worry too much about the appearance of their documents but to concentrate on getting the right content." 
+
+\hfill \LaTeX Project's [About Page](https://www.latex-project.org/about/)
+
+# Why RMarkdown? 
+
+## Why RMarkdown?
+
+> 1. If you can write a report in RMarkdown, you already have the syntactical structure you need to create a Beamer presentation! Special formatting pieces can be easily supplemented where needed.
+
+> 2. You get all the benefits of RMarkdown -- text, code, plots, and \LaTeX, all in one document.
+
+> 3. File structure... and Git!
+
+# General Structure of a Beamer Presentation
+
+## YAML Header
+
+```{r yaml_images, echo=FALSE, out.width="45%", out.height="33%", fig.cap="YAML Header and Result", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("images/yaml_beamer.png","images/title_page.png"))
+```
+
+## Sectioned Content
+
+```{r section_images, echo=FALSE, out.width="45%", out.height="33%", fig.cap="Sectioned Content and Result", fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("images/section_content.png","images/section_content_output.png"))
+```
+
+# Let's make a presentation :)
+
+## GitHub
+
+Pull from this repo to follow along!
+
+[https://github.com/waveley/intro_to_beamer](https://github.com/waveley/intro_to_beamer)
+
+## References
+
+https://www.latex-project.org/about/
