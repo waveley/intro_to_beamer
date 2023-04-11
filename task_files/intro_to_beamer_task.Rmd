@@ -77,7 +77,7 @@ Pull from this repo!
 
 ## The Task
 
-- Similar to how your practicum files may be organized, the content for this presentation is spread out across several different files (in the `task_files` folder).
+- Similar to how your practicum files may be organized, the content for this presentation is spread out across several different files in the `task_files` folder.
 
 - The construction of a Beamer presentation in RMarkdown allows you to bring various types and amounts of content into one file.
 
